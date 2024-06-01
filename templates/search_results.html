@@ -1,0 +1,105 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="head-section">
+    <nav class="navbar navbar-expand-lg py-4">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="{{ url_for('index') }}">Recipe Kitchenette</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item ms-0 ms-md-3">
+                        <a class="nav-link" aria-current="page" href="{{ url_for('index') }}">Home</a>
+                    </li>
+                    <li class="nav-item ms-0 ms-md-3">
+                        <a class="nav-link" href="{{ url_for('recipe') }}">Recipes</a>
+                    </li>
+                    <li class="nav-item ms-0 ms-md-3">
+                        <a class="nav-link" href="#about">About </a>
+                    </li>
+
+                    <li class="nav-item ms-0 ms-md-3">
+                        <a href="{{ url_for('logout') }}" class="btn btn-danger btn-block">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form action="{{ url_for('search') }}" method="GET" class="form-inline">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="query" placeholder="Search recipes..."
+                            aria-label="Search recipes" aria-describedby="search-btn">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit" id="search-btn">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <h1 class="fs-1 fw-bold text-primary text-center pb-5">Search Results</h1>
+    <div class="row text-center">
+        <div class="col-md-4 text-center">
+            <h2 class="fs-1 fw-bold text-primary text-center pb-5" style="font-size: xx-large !important;">Recipes</h2>
+            {% if recipe_results %}
+            <div>
+                {% for recipe in recipe_results %}
+                <a href="{{ url_for('recipe_details', recipe_name=recipe.recipe_name) }}" class="d-block mb-2"
+                    style="color: brown; transition: color 0.3s ease;">{{ recipe.recipe_name }}</a>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p>No recipes found.</p>
+            {% endif %}
+        </div>
+        <div class="col-md-4 text-center">
+            <h2 class="fs-1 fw-bold text-primary text-center pb-5" style="font-size: xx-large !important;">Ingredients</h2>
+            {% if ingredient_results %}
+            <div>
+                {% for ingredient in ingredient_results %}
+                <a href="{{ url_for('ingredient_details', ingredient_id=ingredient._id) }}" class="d-block mb-2" style="color: brown; transition: color 0.3s ease;">{{ ingredient.name }}</a>
+
+                {% endfor %}
+            </div>
+            {% else %}
+            <p>No ingredients found.</p>
+            {% endif %}
+        </div>
+        <div class="col-md-4 text-center">
+            <h2 class="fs-1 fw-bold text-primary text-center pb-5" style="font-size: xx-large !important;">Nutrition</h2>
+            {% if nutrition_results %}
+            <div>
+                {% for nutrition in nutrition_results %}
+                <a href="{{ url_for('nutrition_details', nutrition_id=nutrition._id) }}" class="d-block mb-2"
+                    style="color: brown; transition: color 0.3s ease;">{{ nutrition.recipe_name }}</a>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p>No nutrition information found.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <footer class="footer-section">
+        <p class="text-center py-5 mb-0">
+            &copy; 2024 Recipe Kitchenette. All rights reserved.
+        </p>
+    </footer>
+</div>
+
+{% endblock %}

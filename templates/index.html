@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="content-wrapper">
+    <div class="head-section">
+        <nav class="navbar navbar-expand-lg py-4">
+            <div class="container">
+                <a class="navbar-brand fw-bold" href="{{ url_for('index') }}">Recipe Kitchenette</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item ms-0 ms-md-3">
+                            <a href="{{ url_for('register') }}" class="px-4 py-2 btn btn-primary"> Register</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <br>
+        <br>
+        <br>
+        <div class="row justify-content-center">
+            
+            <div class="col-md-4">
+                {% if session.get('username') %}
+                <p>You are logged in as {{ session['username'] }}</p>
+                <a href="{{ url_for('logout') }}" class="btn btn-danger btn-block">Logout</a>
+                {% else %}
+                <div class="card">
+                    <div class="card-body">
+                        <form method=POST action="{{ url_for('login') }}">
+                            <br>
+                            {% if invalid_cred %}
+                            <div class="alert alert-danger" role="alert">
+                                Invalid username/password combination
+                            </div>
+                            {% endif %}
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Username</label>
+                                <input type="text" class="form-control" name="username" placeholder="Username">
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input type="password" class="form-control" name="pass" placeholder="Password">
+                            </div>
+                            <br>
+                            <br>
+                            <button type="submit" class="btn btn-primary btn-block" style="display: flex; justify-content: center;">Login</button>
+                            <br>
+                        </form>
+                    </div>
+                    <div class="card-footer">
+                        Don't have an account? <a href="{{ url_for('register') }}">Sign up here</a>.
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <footer class="footer-section">
+            <p class="text-center py-5 mb-0">
+                &copy; 2024 Recipe Kitchenette. All rights reserved.
+            </p>
+        </footer>
+    </div>
+</div>
+{% endblock %}

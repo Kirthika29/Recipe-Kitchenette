@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="container my-5">
+    <h1 class="text-center mb-5">Add New Recipe</h1>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form action="{{ url_for('add_recipe') }}" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="recipe_name" class="form-label">Recipe Name</label>
+                    <input type="text" class="form-control" id="recipe_name" name="recipe_name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="recipe_description" class="form-label">Description</label>
+                    <textarea class="form-control" id="recipe_description" name="recipe_description" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="recipe_time" class="form-label">Time to Make</label>
+                    <input type="text" class="form-control" id="recipe_time" name="recipe_time" required>
+                </div>
+                <div class="mb-3">
+                    <label for="recipe_image" class="form-label">Recipe Image</label>
+                    <input type="file" class="form-control" id="recipe_image" name="recipe_image" required>
+                </div>
+                <div class="mb-3">
+                    <label for="recipe_ingredients" class="form-label">Ingredients</label>
+                    <textarea class="form-control" id="recipe_ingredients" name="recipe_ingredients" rows="3" required></textarea>
+                    <small class="form-text text-muted">Enter ingredients separated by commas.</small>
+                </div>
+                <div class="mb-3">
+                    <label for="recipe_instructions" class="form-label">Instructions</label>
+                    <textarea class="form-control" id="recipe_instructions" name="recipe_instructions" rows="5" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="nutri_cal" class="form-label">Calories</label>
+                    <input type="text" class="form-control" id="nutri_cal" name="nutri_cal" required>
+                </div>
+                <div class="mb-3">
+                    <label for="label_nutrition" class="form-label">Label</label>
+                    <textarea class="form-control" id="label_nutrition" name="label_nutrition" rows="3" required></textarea>
+                    <small class="form-text text-muted">Enter nutrition information separated by commas.</small>
+                </div>
+                <div class="mb-3">
+                    <label for="allergen_nutrition" class="form-label">Allergen</label>
+                    <textarea class="form-control" id="allergen_nutrition" name="allergen_nutrition" rows="3" required></textarea>
+                    <small class="form-text text-muted">Enter nutrition information separated by commas.</small>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Recipe</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

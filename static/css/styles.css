@@ -1,0 +1,112 @@
+/*- Font sizes (px)
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+*/
+
+* {
+    --primary-color: #61391c !important;
+  }
+  
+  body {
+    color: #555; /* Steel Gray */
+    font-family: "Roboto", sans-serif;
+    margin: 0; /* Reset margin */
+    padding: 0; /* Reset padding */
+  }
+  
+  .navbar-brand {
+    font-size: 30px;
+  }
+  
+  .nav-link {
+    font-size: 18px !important;
+    font-weight: 500;
+  }
+  
+  .head-section {
+    background-image: linear-gradient(180deg, #F3FF93, #f0721f);
+  }
+  
+  .navbar-brand,
+  .text-primary {
+    color: #61391c !important;
+  }
+  
+  .btn-primary {
+    background-color: #61391c !important;
+    border: none !important;
+  }
+  
+  .nav-link:hover {
+    color: #61391c;
+  }
+  
+  p {
+    font-size: 18px;
+  }
+  .btn-primary:hover {
+    background-color: rgb(152, 70, 70) !important;
+    border: none;
+  }
+  
+  .blue-bg {
+    background-color: #61391c;
+    color: #fff;
+  }
+  
+  .ionicons {
+    color: #61391c;
+    background-color: #C6CF65;
+    padding: 10px;
+    height: 30px;
+    width: 30px;
+    margin-bottom: 12px;
+  }
+  
+  .nav-tabs {
+    border: none;
+  }
+  
+  .nav-tabs .active {
+    background-color: #61391c !important;
+    border: none;
+    color: #fff !important;
+  }
+  
+  .footer-section {
+    width: 100%; /* Take up full width */
+    bottom: 0;
+    background-color: #61391c !important;
+    border: none;
+    color: #fff !important;
+  }
+  .content-wrapper {
+    min-height: 100vh; /* Ensure full viewport height */
+    position: relative; /* Needed for the footer to be positioned relative to this container */
+}
+
+.card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.recipe-card {
+  height: 300px !important; 
+  width: 300px !important;
+  transition: box-shadow 0.3s ease;
+  border: none;
+}
+
+.recipe-card:hover {
+  transform: scale(1.05) translate3D(0, -5px, 0);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 1.0);
+}
+
+.card-img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-img-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+}
