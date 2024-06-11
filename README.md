@@ -1,0 +1,1 @@
+Recipe Kitchenette is a website for a Recipe Recommender and Management System, which aims to provide users with recipe recommendations and manage recipes. Users will be able to explore a wide range of recipes, as well as create, update, and delete their own recipes.
