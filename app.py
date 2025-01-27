@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 
 load_dotenv()  # Load variables from .env file
 app = Flask(__name__, static_folder='static')
-
+app.secret_key = 'everythingyouloseisastepyoutake'
 app.config['MONGO_DBNAME'] = 'recipeKitchenette'
 #app.config['MONGO_URI'] = 'mongodb://localhost:27017/recipeKitchenette'
 app.config['MONGO_URI'] = os.getenv('MONGO_URI')
