@@ -1,0 +1,6 @@
+Flask
+pymongo
+python-dotenv
+Flask-PyMongo
+dnspython
+waitress
