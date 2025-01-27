@@ -186,7 +186,7 @@
                     {% set user_id = session['user_id'] %}
                     {% set recipe_id = recipe._id %}
                     {% if existing_favorite %}
-                    <form action="{{ url_for('recipe_details', recipe_name=recipe.recipe_name) }}" method="DELETE">
+                    <form action="{{ url_for('recipe_details', recipe_name=recipe.recipe_name) }}" method="POST" value="DELETE"> 
                         <input type="hidden" name="recipe_id" value="{{ recipe_id }}">
                         <button type="submit" class="btn btn-danger">Remove from Favorites</button>
                     </form>

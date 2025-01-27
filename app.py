@@ -5,11 +5,16 @@ from pymongo import TEXT
 import gridfs
 import base64
 from bson.objectid import ObjectId
+import os
+from dotenv import load_dotenv
 
+load_dotenv()  # Load variables from .env file
 app = Flask(__name__, static_folder='static')
 
 app.config['MONGO_DBNAME'] = 'recipeKitchenette'
-app.config['MONGO_URI'] = 'mongodb://localhost:27017/recipeKitchenette'
+#app.config['MONGO_URI'] = 'mongodb://localhost:27017/recipeKitchenette'
+#app.config['MONGO_URI'] = 'mongodb+srv://kirthika29:Anusidnat%4013TS@cluster0.naugt.mongodb.net/recipeKitchenette?retryWrites=true&w=majority&appName=Cluster0'
+app.config['MONGO_URI'] = os.getenv('MONGO_URI')
 
 mongo = PyMongo(app)
 
@@ -78,10 +83,12 @@ def edit_ingredient(ingredient_id):
 
 @app.route('/ingredient/<ingredient_id>/delete', methods=['POST'])
 def delete_ingredient(ingredient_id):
-    # Delete the ingredient from the database
-    ingredients_collection.delete_one({'_id': ObjectId(ingredient_id)})
-    return redirect(url_for('ingredients'))
-
+    result = ingredients_collection.delete_one({'_id': ObjectId(ingredient_id)})
+    if result.deleted_count > 0:
+        return jsonify({"success": True}), 200
+    else:
+        return jsonify({"success": False, "error": "Ingredient not found"}), 404
+        
 @app.route('/ingredient/add', methods=['GET', 'POST'])
 def add_ingredient():
     if request.method == 'POST':
@@ -311,25 +318,9 @@ def recipe_details(recipe_name):
                 # Redirect the user to the recipe details page
                 return redirect(url_for('recipe_details', recipe_name=recipe_name))
             else:
-                # The recipe is already in the user's favorites
-                # You can handle this case as needed (e.g., display a message)
-                pass
-        else:
-            # The user is not logged in, redirect to the login page
-            return redirect(url_for('login'))
-
-    elif request.method == 'DELETE':
-        if 'user_id' in session:
-            user_id = ObjectId(session['user_id'])
-            recipe_id = recipe['_id']
-            
-            existing_favorite = favorites_collection.find_one({'user_id': user_id, 'recipe_id': recipe_id})
-            if existing_favorite:
+                # remove from favorites
                 favorites_collection.delete_one({'_id': ObjectId(existing_favorite['_id'])})
-                # Redirect the user to the recipe page
                 return redirect(url_for('recipe_details', recipe_name=recipe_name))
-            else:
-                pass
         else:
             # The user is not logged in, redirect to the login page
             return redirect(url_for('login'))
@@ -358,10 +349,13 @@ def favorites():
         elif request.method == 'DELETE':
             # Remove a recipe from the user's favorites
             recipe_id = request.form['recipe_id']
+            print(recipe_id)
             existing_favorite = favorites_collection.find_one({'user_id': user_id, 'recipe_id': ObjectId(recipe_id)})
             if existing_favorite:
-                favorites_collection.delete_one({'_id': ObjectId(existing_favorite)})
-            return redirect(url_for('recipe'))
+                #favorites_collection.delete_one({'_id': ObjectId(existing_favorite)})
+                favorites_collection.delete_one({'_id': ObjectId(existing_favorite['_id'])})
+            #return redirect(url_for('recipe'))
+            return render_template('index.html')
 
         # Fetch the user's favorite recipes
         favorite_recipes = []
