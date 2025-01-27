@@ -4,3 +4,4 @@ python-dotenv
 Flask-PyMongo
 dnspython
 gunicorn
+bcrypt
