@@ -13,7 +13,6 @@ app = Flask(__name__, static_folder='static')
 
 app.config['MONGO_DBNAME'] = 'recipeKitchenette'
 #app.config['MONGO_URI'] = 'mongodb://localhost:27017/recipeKitchenette'
-#app.config['MONGO_URI'] = 'mongodb+srv://kirthika29:Anusidnat%4013TS@cluster0.naugt.mongodb.net/recipeKitchenette?retryWrites=true&w=majority&appName=Cluster0'
 app.config['MONGO_URI'] = os.getenv('MONGO_URI')
 
 mongo = PyMongo(app)
@@ -88,7 +87,7 @@ def delete_ingredient(ingredient_id):
         return jsonify({"success": True}), 200
     else:
         return jsonify({"success": False, "error": "Ingredient not found"}), 404
-        
+
 @app.route('/ingredient/add', methods=['GET', 'POST'])
 def add_ingredient():
     if request.method == 'POST':
