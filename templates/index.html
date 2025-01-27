@@ -22,7 +22,7 @@
         <br>
         <br>
         <div class="row justify-content-center">
-            
+
             <div class="col-md-4">
                 {% if session.get('username') %}
                 <p>You are logged in as {{ session['username'] }}</p>
@@ -48,7 +48,8 @@
                             </div>
                             <br>
                             <br>
-                            <button type="submit" class="btn btn-primary btn-block" style="display: flex; justify-content: center;">Login</button>
+                            <button type="submit" class="btn btn-primary btn-block"
+                                style="display: flex; justify-content: center;">Login</button>
                             <br>
                         </form>
                     </div>
@@ -66,13 +67,13 @@
         <br>
         <br>
         <br>
-        
+
     </div>
-    
+    <footer class="footer-section">
+        <p class="text-center py-5 mb-0">
+            &copy; 2024 Recipe Kitchenette. All rights reserved.
+        </p>
+    </footer>
 </div>
-<footer class="footer-section">
-    <p class="text-center py-5 mb-0">
-        &copy; 2024 Recipe Kitchenette. All rights reserved.
-    </p>
-</footer>
+
 {% endblock %}
