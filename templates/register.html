@@ -25,7 +25,7 @@
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
-                        <form method=POST action="{{ url_for('register') }}">
+                        <form method=POST action="{{ url_for('register') }}" autocomplete="off">
                             <br>
                             {% if username_exists %}
                             <div class="alert alert-danger" role="alert">
@@ -34,12 +34,12 @@
                             {% endif %}
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Username</label>
-                                <input type="text" class="form-control" name="username" placeholder="Username">
+                                <input type="text" class="form-control" name="username" placeholder="Username" autocomplete="off">
                             </div>
                             <br>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Password</label>
-                                <input type="password" class="form-control" name="pass" placeholder="Password">
+                                <input type="password" class="form-control" name="pass" placeholder="Password" autocomplete="off">
                             </div>
                             <br>
                             <br>
